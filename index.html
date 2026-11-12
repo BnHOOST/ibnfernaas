@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>كشري التحرير ستار | اطلب أونلاين</title>
+  <meta name="description" content="اطلب من كشري التحرير ستار أونلاين — نسخة تجريبية بتقنية ابن فرناس">
+  <meta name="theme-color" content="#F0761E">
+  <link rel="icon" href="assets/tahrir-star-logo.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@600;700&family=Readex+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Mobile-only switch between the two sides of the demo -->
+  <nav class="view-switch" aria-label="التبديل بين الشاشات">
+    <button class="switch-btn active" data-view="customer" type="button">شاشة الزبون</button>
+    <button class="switch-btn" data-view="restaurant" type="button">
+      المطعم <span class="badge" id="badgeRestaurant" hidden>0</span>
+    </button>
+    <button class="switch-btn" data-view="driver" type="button">
+      الطيار <span class="badge" id="badgeDriver" hidden>0</span>
+    </button>
+  </nav>
+
+  <main class="stage">
+
+    <!-- ===================== CUSTOMER SIDE ===================== -->
+    <section class="pane pane-customer active" id="paneCustomer" aria-label="شاشة الزبون">
+      <p class="pane-label">اللي الزبون بيشوفه</p>
+
+      <div class="app">
+        <header class="r-header">
+          <img src="assets/tahrir-star-logo.jpg" alt="شعار كشري التحرير ستار" class="r-logo">
+          <div class="r-info">
+            <h1 class="r-name">كشري التحرير ستار</h1>
+            <p class="r-meta"><span class="dot-open"></span> مفتوح الآن · الدفع كاش عند الاستلام</p>
+          </div>
+        </header>
+
+        <!-- View: menu -->
+        <div class="view active" id="viewMenu">
+          <div class="cats" role="tablist" aria-label="الأقسام">
+            <button class="cat active" data-cat="all" type="button">الكل</button>
+            <button class="cat" data-cat="koshari" type="button">كشري</button>
+            <button class="cat" data-cat="tagen" type="button">طواجن</button>
+          </div>
+          <ul class="menu" id="menuList"></ul>
+        </div>
+
+        <!-- View: cart + checkout -->
+        <div class="view" id="viewCheckout">
+          <button class="back" type="button" data-go="menu">→ رجوع للمنيو</button>
+          <h2 class="view-title">طلبك</h2>
+          <ul class="cart-list" id="cartList"></ul>
+          <div class="sum-row"><span>الإجمالي</span><strong id="cartTotal">٠ جنيه</strong></div>
+          <p class="hint">رسوم التوصيل حسب المنطقة · الدفع كاش عند الاستلام</p>
+
+          <form class="form" id="orderForm" novalidate>
+            <div class="form-head">
+              <h3>بيانات التوصيل</h3>
+              <button type="button" class="link-btn" id="fillDemo">املأ بيانات تجريبية</button>
+            </div>
+            <label>الاسم
+              <input type="text" name="name" autocomplete="name" required>
+            </label>
+            <label>رقم الموبايل
+              <input type="tel" name="phone" inputmode="tel" autocomplete="tel" required>
+            </label>
+            <label>العنوان بالتفصيل
+              <input type="text" name="address" autocomplete="street-address" required>
+            </label>
+            <label>ملاحظات (اختياري)
+              <input type="text" name="notes" placeholder="مثلاً: شطة زيادة، من غير بصل">
+            </label>
+            <p class="form-error" id="formError" hidden>من فضلك اكتب الاسم ورقم الموبايل والعنوان.</p>
+            <button type="submit" class="btn-primary btn-block">تأكيد الطلب</button>
+          </form>
+        </div>
+
+        <!-- View: tracking -->
+        <div class="view" id="viewTrack">
+          <div class="track-head">
+            <div class="track-check" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="40" height="40"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h2 class="view-title">طلبك وصل للمطعم</h2>
+            <p class="track-no">رقم الطلب <strong id="trackNo">#</strong></p>
+          </div>
+          <div class="code-box" id="codeBox">
+            <span id="codeLabel">كود التسليم</span>
+            <strong id="deliveryCode" dir="ltr">----</strong>
+            <p id="codeHint">قول الكود ده للطيار لما يوصلك، علشان يأكد إن الطلب اتسلّم ليك.</p>
+          </div>
+          <ol class="steps" id="trackSteps">
+            <li data-step="received">تم استلام الطلب</li>
+            <li data-step="preparing">جاري التحضير</li>
+            <li data-step="delivering">خرج للتوصيل</li>
+            <li data-step="delivered">تم التسليم</li>
+          </ol>
+          <div class="track-summary" id="trackSummary"></div>
+          <button type="button" class="btn-ghost btn-block" data-go="menu">اطلب تاني</button>
+        </div>
+
+        <!-- Cart bar -->
+        <button class="cart-bar" id="cartBar" type="button" hidden>
+          <span class="cart-count" id="cartCount">٠</span>
+          <span>عرض الطلب</span>
+          <strong id="cartBarTotal">٠ جنيه</strong>
+        </button>
+
+        <footer class="powered">
+          <span>بتقنية</span>
+          <svg class="wing" viewBox="0 0 120 120" aria-hidden="true">
+            <g transform="rotate(18 60 60)" fill="#F2A03D">
+              <rect x="22" y="30" width="82" height="17" rx="8.5"/>
+              <rect x="22" y="53" width="64" height="17" rx="8.5"/>
+              <rect x="22" y="76" width="46" height="17" rx="8.5"/>
+            </g>
+            <circle cx="14" cy="28" r="9" fill="#1E2A5A"/>
+          </svg>
+          <strong>ابن فرناس</strong>
+        </footer>
+      </div>
+    </section>
+
+    <!-- ===================== RESTAURANT SIDE ===================== -->
+    <section class="pane pane-restaurant" id="paneRestaurant" aria-label="لوحة المطعم">
+      <p class="pane-label">اللي المطعم بيشوفه</p>
+
+      <div class="dash">
+        <header class="dash-head">
+          <div class="dash-title">
+            <img src="assets/tahrir-star-logo.jpg" alt="" class="dash-logo">
+            <div>
+              <h2>لوحة الطلبات</h2>
+              <p>كشري التحرير ستار</p>
+            </div>
+          </div>
+          <div class="live"><span class="live-dot"></span> متصل</div>
+        </header>
+
+        <div class="stats">
+          <div class="stat"><span>طلبات النهارده</span><strong id="statCount">٠</strong></div>
+          <div class="stat"><span>إجمالي المبيعات</span><strong id="statTotal">٠ جنيه</strong></div>
+          <div class="stat"><span>طلبات ضاعت</span><strong>٠</strong></div>
+        </div>
+
+        <div class="orders" id="ordersList">
+          <div class="empty" id="ordersEmpty">
+            <svg viewBox="0 0 24 24" width="44" height="44" aria-hidden="true"><path d="M4 7h16l-1.5 11a2 2 0 0 1-2 1.7H7.5a2 2 0 0 1-2-1.7L4 7z M9 7V5a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <p>مفيش طلبات لسه</p>
+            <span>اعمل طلب من شاشة الزبون وشوفه بيوصل هنا فوراً</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== DRIVER SIDE ===================== -->
+    <section class="pane pane-driver" id="paneDriver" aria-label="شاشة الطيار">
+      <p class="pane-label">اللي الطيار بيشوفه</p>
+
+      <div class="dash dash-driver">
+        <header class="dash-head">
+          <div class="dash-title">
+            <div class="driver-avatar" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="28" height="28"><circle cx="6" cy="17" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="18" cy="17" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9 17h6l-2-6h-3 M13 11l2-4h3 M4 11h5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <h2>شاشة الطيار</h2>
+              <p>طلبات التوصيل اللي معاك</p>
+            </div>
+          </div>
+        </header>
+
+        <div class="orders" id="driverList">
+          <div class="empty" id="driverEmpty">
+            <p>مفيش طلبات معاك دلوقتي</p>
+            <span>لما المطعم يدوس «خرج للتوصيل» الطلب هيظهر هنا</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toasts" id="toasts" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
