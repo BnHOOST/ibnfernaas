@@ -2,191 +2,190 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>كشري التحرير ستار | اطلب أونلاين</title>
-  <meta name="description" content="اطلب من كشري التحرير ستار أونلاين — نسخة تجريبية بتقنية ابن فرناس">
-  <meta name="theme-color" content="#F0761E">
-  <link rel="icon" href="assets/tahrir-star-logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>أغا | دلوقتي أونلاين | عرض ابن فرناس</title>
+  <meta name="description" content="صفحة طلبات أونلاين خاصة بأغا للمأكولات الشامية بفروعه التلاتة — بتقنية ابن فرناس">
+  <meta name="theme-color" content="#241E3F">
+  <link rel="icon" href="assets/agha-logo.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@600;700&family=Readex+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="landing.css">
 </head>
 <body>
 
-  <!-- Mobile-only switch between the two sides of the demo -->
-  <nav class="view-switch" aria-label="التبديل بين الشاشات">
-    <button class="switch-btn active" data-view="customer" type="button">شاشة الزبون</button>
-    <button class="switch-btn" data-view="restaurant" type="button">
-      المطعم <span class="badge" id="badgeRestaurant" hidden>0</span>
-    </button>
-    <button class="switch-btn" data-view="driver" type="button">
-      الطيار <span class="badge" id="badgeDriver" hidden>0</span>
-    </button>
-  </nav>
+<header class="nav">
+  <div class="wrap nav-in">
+    <div class="duo">
+      <img src="assets/agha-logo.jpg" alt="أغا" class="duo-logo">
+      <span class="duo-x" aria-hidden="true">×</span>
+      <svg class="duo-wing" viewBox="0 0 120 120" aria-hidden="true"><g transform="rotate(18 60 60)" fill="#F2A03D"><rect x="22" y="30" width="82" height="17" rx="8.5"/><rect x="22" y="53" width="64" height="17" rx="8.5"/><rect x="22" y="76" width="46" height="17" rx="8.5"/></g><circle cx="14" cy="28" r="9" fill="#1E2A5A"/></svg>
+      <span class="duo-name">ابن فرناس</span>
+    </div>
+    <a class="btn btn-small" href="demo.html">جرّب الديمو</a>
+  </div>
+</header>
 
-  <main class="stage">
-
-    <!-- ===================== CUSTOMER SIDE ===================== -->
-    <section class="pane pane-customer active" id="paneCustomer" aria-label="شاشة الزبون">
-      <p class="pane-label">اللي الزبون بيشوفه</p>
-
-      <div class="app">
-        <header class="r-header">
-          <img src="assets/tahrir-star-logo.jpg" alt="شعار كشري التحرير ستار" class="r-logo">
-          <div class="r-info">
-            <h1 class="r-name">كشري التحرير ستار</h1>
-            <p class="r-meta"><span class="dot-open"></span> مفتوح الآن · الدفع كاش عند الاستلام</p>
-          </div>
-        </header>
-
-        <!-- View: menu -->
-        <div class="view active" id="viewMenu">
-          <div class="cats" role="tablist" aria-label="الأقسام">
-            <button class="cat active" data-cat="all" type="button">الكل</button>
-            <button class="cat" data-cat="koshari" type="button">كشري</button>
-            <button class="cat" data-cat="tagen" type="button">طواجن</button>
-          </div>
-          <ul class="menu" id="menuList"></ul>
-        </div>
-
-        <!-- View: cart + checkout -->
-        <div class="view" id="viewCheckout">
-          <button class="back" type="button" data-go="menu">→ رجوع للمنيو</button>
-          <h2 class="view-title">طلبك</h2>
-          <ul class="cart-list" id="cartList"></ul>
-          <div class="sum-row"><span>الإجمالي</span><strong id="cartTotal">٠ جنيه</strong></div>
-          <p class="hint">رسوم التوصيل حسب المنطقة · الدفع كاش عند الاستلام</p>
-
-          <form class="form" id="orderForm" novalidate>
-            <div class="form-head">
-              <h3>بيانات التوصيل</h3>
-              <button type="button" class="link-btn" id="fillDemo">املأ بيانات تجريبية</button>
-            </div>
-            <label>الاسم
-              <input type="text" name="name" autocomplete="name" required>
-            </label>
-            <label>رقم الموبايل
-              <input type="tel" name="phone" inputmode="tel" autocomplete="tel" required>
-            </label>
-            <label>العنوان بالتفصيل
-              <input type="text" name="address" autocomplete="street-address" required>
-            </label>
-            <label>ملاحظات (اختياري)
-              <input type="text" name="notes" placeholder="مثلاً: شطة زيادة، من غير بصل">
-            </label>
-            <p class="form-error" id="formError" hidden>من فضلك اكتب الاسم ورقم الموبايل والعنوان.</p>
-            <button type="submit" class="btn-primary btn-block">تأكيد الطلب</button>
-          </form>
-        </div>
-
-        <!-- View: tracking -->
-        <div class="view" id="viewTrack">
-          <div class="track-head">
-            <div class="track-check" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="40" height="40"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <h2 class="view-title">طلبك وصل للمطعم</h2>
-            <p class="track-no">رقم الطلب <strong id="trackNo">#</strong></p>
-          </div>
-          <div class="code-box" id="codeBox">
-            <span id="codeLabel">كود التسليم</span>
-            <strong id="deliveryCode" dir="ltr">----</strong>
-            <p id="codeHint">قول الكود ده للطيار لما يوصلك، علشان يأكد إن الطلب اتسلّم ليك.</p>
-          </div>
-          <ol class="steps" id="trackSteps">
-            <li data-step="received">تم استلام الطلب</li>
-            <li data-step="preparing">جاري التحضير</li>
-            <li data-step="delivering">خرج للتوصيل</li>
-            <li data-step="delivered">تم التسليم</li>
-          </ol>
-          <div class="track-summary" id="trackSummary"></div>
-          <button type="button" class="btn-ghost btn-block" data-go="menu">اطلب تاني</button>
-        </div>
-
-        <!-- Cart bar -->
-        <button class="cart-bar" id="cartBar" type="button" hidden>
-          <span class="cart-count" id="cartCount">٠</span>
-          <span>عرض الطلب</span>
-          <strong id="cartBarTotal">٠ جنيه</strong>
-        </button>
-
-        <footer class="powered">
-          <span>بتقنية</span>
-          <svg class="wing" viewBox="0 0 120 120" aria-hidden="true">
-            <g transform="rotate(18 60 60)" fill="#F2A03D">
-              <rect x="22" y="30" width="82" height="17" rx="8.5"/>
-              <rect x="22" y="53" width="64" height="17" rx="8.5"/>
-              <rect x="22" y="76" width="46" height="17" rx="8.5"/>
-            </g>
-            <circle cx="14" cy="28" r="9" fill="#1E2A5A"/>
-          </svg>
-          <strong>ابن فرناس</strong>
-        </footer>
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-in">
+    <div class="hero-text">
+      <span class="kicker">عرض خاص لأغا للمأكولات الشامية</span>
+      <h1>أغا <span class="hl">دلوقتي أونلاين</span></h1>
+      <p class="lead">صفحة طلبات خاصة بأغا، بشعاره ومنيوه وفروعه التلاتة. الزبون يطلب في ثواني من موبايله، والطلب يوصل للفرع الصح مكتوب وواضح، <b>والخط الساخن يفضل شغال زي ما هو.</b></p>
+      <div class="hero-cta">
+        <a class="btn" href="demo.html">جرّب الديمو الحي</a>
+        <a class="btn btn-ghost" href="#how">إزاي بيشتغل؟</a>
       </div>
-    </section>
-
-    <!-- ===================== RESTAURANT SIDE ===================== -->
-    <section class="pane pane-restaurant" id="paneRestaurant" aria-label="لوحة المطعم">
-      <p class="pane-label">اللي المطعم بيشوفه</p>
-
-      <div class="dash">
-        <header class="dash-head">
-          <div class="dash-title">
-            <img src="assets/tahrir-star-logo.jpg" alt="" class="dash-logo">
-            <div>
-              <h2>لوحة الطلبات</h2>
-              <p>كشري التحرير ستار</p>
-            </div>
-          </div>
-          <div class="live"><span class="live-dot"></span> متصل</div>
-        </header>
-
-        <div class="stats">
-          <div class="stat"><span>طلبات النهارده</span><strong id="statCount">٠</strong></div>
-          <div class="stat"><span>إجمالي المبيعات</span><strong id="statTotal">٠ جنيه</strong></div>
-          <div class="stat"><span>طلبات ضاعت</span><strong>٠</strong></div>
+    </div>
+    <div class="hero-visual">
+      <div class="phone">
+        <div class="phone-head">
+          <img src="assets/agha-logo.jpg" alt="">
+          <div><b>أغا للمأكولات الشامية</b><span>مفتوح الآن · اطلب أونلاين</span></div>
         </div>
-
-        <div class="orders" id="ordersList">
-          <div class="empty" id="ordersEmpty">
-            <svg viewBox="0 0 24 24" width="44" height="44" aria-hidden="true"><path d="M4 7h16l-1.5 11a2 2 0 0 1-2 1.7H7.5a2 2 0 0 1-2-1.7L4 7z M9 7V5a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <p>مفيش طلبات لسه</p>
-            <span>اعمل طلب من شاشة الزبون وشوفه بيوصل هنا فوراً</span>
-          </div>
-        </div>
+        <img class="phone-hero" src="assets/platter.jpg" alt="تشكيلة أكلات أغا">
+        <div class="phone-row"><img src="assets/crepe.jpg" alt=""><div><b>كريب شاورما</b><span>١١٠ جنيه</span></div><i>+</i></div>
+        <div class="phone-row"><img src="assets/chicken.jpg" alt=""><div><b>نص فرخة شواية</b><span>١٩٠ جنيه</span></div><i>+</i></div>
+        <div class="phone-bar">اطلب الآن · ٣٠٠ جنيه</div>
       </div>
-    </section>
+      <div class="float-card fc-1"><span class="dot"></span> طلب جديد لفرع شارع الجيش</div>
+      <div class="float-card fc-2">كود التسليم <b dir="ltr">6648</b></div>
+    </div>
+  </div>
+</section>
 
-    <!-- ===================== DRIVER SIDE ===================== -->
-    <section class="pane pane-driver" id="paneDriver" aria-label="شاشة الطيار">
-      <p class="pane-label">اللي الطيار بيشوفه</p>
-
-      <div class="dash dash-driver">
-        <header class="dash-head">
-          <div class="dash-title">
-            <div class="driver-avatar" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="28" height="28"><circle cx="6" cy="17" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="18" cy="17" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9 17h6l-2-6h-3 M13 11l2-4h3 M4 11h5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <div>
-              <h2>شاشة الطيار</h2>
-              <p>طلبات التوصيل اللي معاك</p>
-            </div>
-          </div>
-        </header>
-
-        <div class="orders" id="driverList">
-          <div class="empty" id="driverEmpty">
-            <p>مفيش طلبات معاك دلوقتي</p>
-            <span>لما المطعم يدوس «خرج للتوصيل» الطلب هيظهر هنا</span>
-          </div>
-        </div>
+<!-- PROBLEM -->
+<section class="sec">
+  <div class="wrap">
+    <h2 class="sec-title">الخط الساخن شغال، <span class="hl-o">بس الطلب طويل</span></h2>
+    <p class="sec-sub">أغا عامل شغل جامد في الدعاية والفروع. بس الطلب بالتليفون بيعدّي بخطوات كتير قبل ما يتسجّل، والكاشير قاعد على مكالمة واحدة طول الوقت ده.</p>
+    <div class="grid4">
+      <div class="card">
+        <div class="ic ic-o"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></div>
+        <h3>مكالمة بخطوات كتير</h3>
+        <p>ترحيب، أسئلة، اختيار، إملاء العنوان، إعادة الطلب… وكل ده لطلب واحد.</p>
       </div>
-    </section>
-  </main>
+      <div class="card">
+        <div class="ic ic-o"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z M14 3v5h5 M9 13h6 M9 17h4"/></svg></div>
+        <h3>طلب على ورقة</h3>
+        <p>صنف يتنسى، تومية متتكتبش، عنوان مش واضح… وكل غلطة زبون زعلان.</p>
+      </div>
+      <div class="card">
+        <div class="ic ic-o"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z M12 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/></svg></div>
+        <h3>٣ فروع ورقم واحد</h3>
+        <p>دسوق مرتين وإيتاي البارود. كل طلب محتاج يتحوّل للفرع الصح بإيد حد.</p>
+      </div>
+      <div class="card">
+        <div class="ic ic-o"><svg viewBox="0 0 24 24"><path d="M12 7v5l3 2 M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18"/></svg></div>
+        <h3>«عندكم إيه؟ بكام؟»</h3>
+        <p>نص المكالمة بيروح في قراية المنيو والأسعار للزبون.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <div class="toasts" id="toasts" aria-live="polite"></div>
+<!-- HOW -->
+<section class="sec sec-navy" id="how">
+  <div class="wrap">
+    <h2 class="sec-title light">ابن فرناس بيشيل الحِمل عن الخط الساخن</h2>
+    <p class="sec-sub light">مش بنلغي حاجة. بنزوّد قناة طلب تانية شغالة ٢٤ ساعة، من غير ما تشغل حد.</p>
+    <ol class="steps">
+      <li><span class="n">١</span><h3>الزبون يفتح صفحة أغا</h3><p>من الـ QR اللي على المنيو والأكياس، أو من لينك الفيسبوك.</p></li>
+      <li><span class="n">٢</span><h3>يختار الفرع والأكل</h3><p>المنيو بالصور والأسعار، والصفحة بتقترح عليه التومية والبطاطس.</p></li>
+      <li><span class="n">٣</span><h3>الطلب يوصل للفرع</h3><p>بصوت تنبيه، مكتوب بالأصناف والعنوان والتليفون. الكاشير يدوس «قبول».</p></li>
+      <li><span class="n">٤</span><h3>التسليم بكود</h3><p>الزبون بياخد كود، والطيار بيدخّله عند التسليم. مفيش «الأوردر ماوصلش».</p></li>
+    </ol>
+    <div class="center"><a class="btn btn-yellow" href="demo.html">جرّبها بنفسك دلوقتي</a></div>
+  </div>
+</section>
 
-  <script src="app.js"></script>
+<!-- DIFF -->
+<section class="sec sec-cream">
+  <div class="wrap narrow">
+    <h2 class="sec-title"><span class="tag">الفرق في سطور</span></h2>
+    <div class="table">
+      <div class="tr th"><span></span><span>الخط الساخن</span><span class="us">صفحة أغا</span></div>
+      <div class="tr"><span>الطلب</span><span>مكالمة وانتظار</span><span class="us">٣ ضغطات</span></div>
+      <div class="tr"><span>المنيو</span><span>تسأل عن الأصناف والأسعار</span><span class="us">المنيو بالصور والأسعار</span></div>
+      <div class="tr"><span>العنوان</span><span>تمليه وتعيده</span><span class="us">مكتوب مرة واحدة</span></div>
+      <div class="tr"><span>الفرع</span><span>تحويل يدوي</span><span class="us">الفرع الأقرب تلقائي</span></div>
+      <div class="tr"><span>التسجيل</span><span>على ورقة</span><span class="us">مكتوب عند الفرع</span></div>
+    </div>
+    <p class="note">والخط الساخن يفضل شغال للي بيحب يتصل. الصفحة بتشيل عنه الطلبات اللي ممكن تخلص في ثواني.</p>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="sec">
+  <div class="wrap">
+    <h2 class="sec-title">اللي أغا هيكسبه</h2>
+    <div class="grid3">
+      <div class="benefit"><div class="ic ic-g"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><div><h3>طلب في ٣ ضغطات</h3><p>الصفحة بتستقبل أي عدد طلبات في نفس الوقت، والزبون بيخلص في ثواني.</p></div></div>
+      <div class="benefit"><div class="ic ic-g"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/></svg></div><div><h3>كل طلب للفرع الصح</h3><p>الزبون بيختار فرعه، والطلب يظهر في لوحة الفرع ده بس.</p></div></div>
+      <div class="benefit"><div class="ic ic-g"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div><div><h3>قيمة أوردر أعلى</h3><p>«يحلى مع تومية؟» بضغطة واحدة، والإضافات بتتباع لوحدها.</p></div></div>
+      <div class="benefit"><div class="ic ic-g"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z M9 13h6 M9 17h4"/></svg></div><div><h3>مفيش غلط في الطلب</h3><p>الزبون هو اللي بيكتب طلبه وعنوانه بنفسه.</p></div></div>
+      <div class="benefit"><div class="ic ic-g"><svg viewBox="0 0 24 24"><path d="M7 11V7a5 5 0 0 1 10 0v4 M5 11h14v10H5z"/></svg></div><div><h3>تسليم مضمون بالكود</h3><p>إثبات إن الطلب اتسلّم والفلوس اتحصّلت.</p></div></div>
+      <div class="benefit"><div class="ic ic-g"><svg viewBox="0 0 24 24"><path d="M4 19V5 M4 19h16 M8 15v-4 M12 15V8 M16 15v-6"/></svg></div><div><h3>أرقامك قدامك</h3><p>تقرير بعدد الطلبات والمبيعات لكل فرع، وأرقام الزباين لعروضك.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARE -->
+<section class="sec sec-cream">
+  <div class="wrap narrow">
+    <h2 class="sec-title">ليه مش تطبيقات التوصيل الكبيرة بس؟</h2>
+    <div class="table">
+      <div class="tr th"><span></span><span>تطبيقات التوصيل الكبيرة</span><span class="us">صفحة أغا مع ابن فرناس</span></div>
+      <div class="tr"><span>التكلفة</span><span>عمولة على كل طلب</span><span class="us">اشتراك ثابت</span></div>
+      <div class="tr"><span>الصفحة</span><span>أغا وسط مطاعم كتير منافسة</span><span class="us">أغا لوحده، بشعاره وألوانه</span></div>
+      <div class="tr"><span>بيانات الزبون</span><span>عند التطبيق</span><span class="us">عندك إنت</span></div>
+      <div class="tr"><span>الفروع</span><span>حسب نظام التطبيق</span><span class="us">الفروع التلاتة زي ما إنت عايز</span></div>
+    </div>
+    <p class="note">ومفيش تعارض: لو أغا موجود على تطبيقات تانية، ممكن يكمّل عليها عادي. صفحة أغا بتكسب الزباين اللي بيدوّروا على أغا بالاسم.</p>
+  </div>
+</section>
+
+<!-- QR IDEA -->
+<section class="sec">
+  <div class="wrap qr-in">
+    <div class="qr-card" aria-hidden="true">
+      <svg viewBox="0 0 100 100" width="150" height="150"><rect width="100" height="100" rx="12" fill="#fff"/><g fill="#241E3F"><rect x="10" y="10" width="26" height="26" rx="4"/><rect x="64" y="10" width="26" height="26" rx="4"/><rect x="10" y="64" width="26" height="26" rx="4"/><rect x="44" y="12" width="8" height="8"/><rect x="44" y="28" width="8" height="8"/><rect x="44" y="44" width="8" height="8"/><rect x="60" y="44" width="8" height="8"/><rect x="76" y="44" width="8" height="8"/><rect x="12" y="44" width="8" height="8"/><rect x="28" y="44" width="8" height="8"/><rect x="44" y="60" width="8" height="8"/><rect x="60" y="64" width="8" height="8"/><rect x="76" y="72" width="8" height="8"/><rect x="60" y="80" width="8" height="8"/><rect x="44" y="80" width="8" height="8"/></g><g fill="#fff"><rect x="16" y="16" width="14" height="14" rx="2"/><rect x="70" y="16" width="14" height="14" rx="2"/><rect x="16" y="70" width="14" height="14" rx="2"/></g><g fill="#4FA22E"><rect x="20" y="20" width="6" height="6"/><rect x="74" y="20" width="6" height="6"/><rect x="20" y="74" width="6" height="6"/></g></svg>
+    </div>
+    <div>
+      <h2 class="sec-title start">الـ QR اللي على منيو أغا، يبقى زرار «اطلب»</h2>
+      <p class="sec-sub start">المنيو المطبوع عليه QR بيودّي على صفحة الفيسبوك. لو بيودّي على صفحة الطلب، الزبون اللي ماسك المنيو في إيده يطلب منه على طول، من غير ما يتصل.</p>
+    </div>
+  </div>
+</section>
+
+<!-- OFFER -->
+<section class="sec sec-navy">
+  <div class="wrap narrow center">
+    <h2 class="sec-title light">جرّبه ببلاش، وقرّر بالأرقام</h2>
+    <ul class="offer">
+      <li>نجهّز صفحة أغا بالمنيو والأسعار والفروع التلاتة</li>
+      <li>فترة تجربة مجانية، والخط الساخن شغال زي ما هو</li>
+      <li>تقرير أسبوعي بعدد الطلبات الأونلاين وقيمتها لكل فرع</li>
+      <li>تكمّل بس لو شفت فرق</li>
+    </ul>
+    <div class="hero-cta center-row">
+      <a class="btn btn-yellow" href="demo.html">شوف الديمو الحي</a>
+      <!-- عدّل الرقم ده لرقمك على واتساب: 20 + الرقم من غير الصفر الأول -->
+      <a class="btn btn-ghost-light" href="https://wa.me/20XXXXXXXXXX">كلّمنا على واتساب</a>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <span>بتقنية</span>
+    <svg viewBox="0 0 120 120" width="26" height="26" aria-hidden="true"><g transform="rotate(18 60 60)" fill="#F2A03D"><rect x="22" y="30" width="82" height="17" rx="8.5"/><rect x="22" y="53" width="64" height="17" rx="8.5"/><rect x="22" y="76" width="46" height="17" rx="8.5"/></g><circle cx="14" cy="28" r="9" fill="#1E2A5A"/></svg>
+    <strong>ابن فرناس</strong>
+    <span class="sep">·</span>
+    <span class="muted">عرض تجريبي مقدَّم لأغا للمأكولات الشامية</span>
+  </div>
+</footer>
+
 </body>
 </html>
